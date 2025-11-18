@@ -26,3 +26,23 @@ CREATE TABLE org_projects (
     abstract TEXT,
     project_url TEXT
 );
+
+
+
+-- user-profile-service 
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT UNIQUE,
+    password_hash TEXT NOT NULL,
+    github_username TEXT,
+    languages TEXT[],             -- e.g. ['python','js']
+    experience_level TEXT,        -- e.g. 'junior'|'mid'|'senior'
+    interests TEXT[],             -- e.g. ['ml','backend']
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- optional index for quick lookup by github_username
+CREATE INDEX IF NOT EXISTS idx_users_github_username ON users (github_username);

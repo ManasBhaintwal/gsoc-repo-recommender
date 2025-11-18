@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from org_collector.routers import orgs
+from .routers import orgs
 
 app = FastAPI(title="Org Collector Service", version="1.0.0")
 
